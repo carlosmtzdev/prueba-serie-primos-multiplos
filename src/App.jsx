@@ -5,21 +5,17 @@ import primo from './primo'
 import multiple from './multiple'
 import Result from './result';
 import Serie from './serie'
+import Form from './form'
 
 function App() {
 
-  const [number, setNumber] = useState(0)
+  const [serie, setSerie] = useState(0)
   const [primos, setPrimos] = useState([])
   const [multiplos, setMultiplos] = useState([])
 
-  const handleNumber = (e) => {
-    setNumber(e.target.value)
-  }
 
-  const getSerie = (e) => {
-    e.preventDefault()
-
-    let serie = new Serie(number)
+  const getSerie = (data) => {
+    let serie = new Serie(data)
     setMultiplos(serie.getMultiplos())
     setPrimos(serie.getPrimos())
 
@@ -32,13 +28,7 @@ function App() {
       <div>
         <h2>Calcular serie</h2>
 
-        {/* <Form /> */}
-
-        <form  onSubmit={getSerie}>
-          <label>Numero:</label>
-          <input type="number" name="" id="" value={number} onChange={handleNumber} />
-          <button className="button button__save" type="submit">Calcular</button>
-        </form>
+        <Form onSubmit={getSerie}/>
 
         <div className="result">
           <div>
